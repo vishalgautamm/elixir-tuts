@@ -12,7 +12,7 @@ defmodule FirestormData.UserTest do
       %User{}
       |> User.changeset(%{name: "Vishal Gautam", email: "vishal.91@live.com"})
 
-    assert = {:ok, _} = Repo.insert vishal_changeset 
+    assert {:ok, _} = Repo.insert vishal_changeset 
   end
 
   test "creating a user without an email" do
@@ -33,7 +33,7 @@ defmodule FirestormData.UserTest do
 
   test "creating two users with same email address" do
     vishal_changeset =
-      $User{}
+      %User{}
       |> User.changeset(%{name: "Vishal Gautam", email: "vishal.91@live.com"})
 
     assert {:ok, _} = Repo.insert(vishal_changeset)
