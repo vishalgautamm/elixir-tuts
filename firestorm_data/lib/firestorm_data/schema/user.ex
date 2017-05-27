@@ -15,7 +15,7 @@ defmodule FirestormData.User do
     user
     |> cast(params, [:username, :name, :email])
     |> validate_required([:email])
-    |> valudate_format(:email, ~r/@/)
+    |> validate_format(:email, ~r/@/)
   end
 
 end
