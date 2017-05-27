@@ -2,18 +2,22 @@ defmodule FridgeServer do
   use GenServer
   
   ### Public API
-  def start_link(tems) do 
+
+  def start_link(items) do 
     {:ok, fridge} = :gen_server.start_link FridgeServer, items, []
+    fridge
   end 
-  ### GenServer API
+
   def store(fridge, item) do
-    :gen_server.call(fridge, {:store, item})
+    :gen_server.call(fridge, { :store, item })
   end
 
   def take(fridge, item) do
-    :gen_server.call(fridge, {:take, item})
+    :gen_server.call(fridge, { :take, item })
   end
 
+  ### GenServer API
+  
   def init(items) do
     {:ok, items} 
   end
@@ -38,19 +42,19 @@ defmodule FridgeServerTest do
   use ExUnit.Case
 
   test "putting something into the fridge" do
-    fridge = FridgeServer.start_link
+    fridge = FridgeServer.start_link([])
     assert :ok == FridgeServer.store(fridge, :bacon)
   end
 
   test "removing something from the fridge" do
-    fridge = FridgeServer.start_link
+    fridge = FridgeServer.start_link([])
     FridgeServer.store(fridge, :bacon)
     assert {:ok, :bacon} == FridgeServer.take(fridge, :bacon)
   end 
 
   test "taking something from the fridge that isnt there" do
-    fridge = FridgeServer.start_link
-    assert :not_found == :gen_server.call(fridge, {:take, :bacon})
+    fridge = FridgeServer.start_link([])
+    assert :not_found == FridgeServer.take(fridge, :bacon)
   end
 
 end
