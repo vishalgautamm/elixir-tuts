@@ -4,16 +4,16 @@ defmodule FridgeServer do
   ### Public API
 
   def start_link(items) do 
-    {:ok, fridge} = :gen_server.start_link FridgeServer, items, []
+    {:ok, fridge} = GenServer.start_link FridgeServer, items, []
     fridge
   end 
 
   def store(fridge, item) do
-    :gen_server.call(fridge, { :store, item })
+    GenServer.call(fridge, { :store, item })
   end
 
   def take(fridge, item) do
-    :gen_server.call(fridge, { :take, item })
+    GenServer.call(fridge, { :take, item })
   end
 
   ### GenServer API
