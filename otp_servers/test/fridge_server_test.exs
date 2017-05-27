@@ -56,5 +56,5 @@ defmodule FridgeServerTest do
     fridge = FridgeServer.start_link([])
     assert :not_found == FridgeServer.take(fridge, :bacon)
   end
-
 end
+
