@@ -20,7 +20,15 @@ defmodule FirestormData.UserTest do
       %User{}
       |> User.changeset(%{name: "Vishal Gautam"})
 
-    assert {:email, {"Cant be blank", [validation: :required]}} in vishal_changeset.errors
+    assert {:email, {"can't be blank", [validation: :required]}} in vishal_changeset.errors
+  end
+
+  test "creating a user with an invalid email" do
+    vishal_changeset =
+      %User{}
+      |> User.changeset(%{name: "Vishal Gautam", email: "wrongemail"})
+
+    refute vishal_changeset.valid?
   end
 
 end
