@@ -8,6 +8,11 @@ defmodule FridgeServer do
   def handle_call({:store, item}, _from, items) do
     {:reply, :ok, [item|items]}
   end
+
+  def handle_call({:take, item}, _from, items) do
+    {:reply, {:ok, item}, items}
+  end
+
 end
 
 defmodule FridgeServerTest do
