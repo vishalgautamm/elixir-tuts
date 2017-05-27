@@ -37,7 +37,8 @@ defmodule FirestormData.UserTest do
       |> User.changeset(%{name: "Vishal Gautam", email: "vishal.91@live.com"})
 
     assert {:ok, _} = Repo.insert(vishal_changeset)
-    assert {:error, _} = Repo.insert(vishal_changeset)
+    {:error, new_changeset} = Repo.insert(vishal_changeset)
+    assert {:email, {"has already been taken", []}} in new_changeset.errors
   end
 
 end
