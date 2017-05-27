@@ -1,3 +1,15 @@
+defmodule FridgeServer do
+  use GenServer
+
+  def init(items) do
+    {:ok, items} 
+  end
+
+  def handle_call({:store, item}, _from, items) do
+    {:reply, :ok, [item|items]}
+  end
+end
+
 defmodule FridgeServerTest do
   use ExUnit.Case
 
