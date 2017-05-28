@@ -1,6 +1,7 @@
 defmodule FirestormData.PostTest do
   alias FirestormData.{Category, User, Thread, Post, Repo}
   use ExUnit.Case
+  import Ecto.Query
 
   setup do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(Repo)
@@ -23,7 +24,14 @@ defmodule FirestormData.PostTest do
 
     test "finding a post by a user", %{post1: post1, vishal: vishal} do
       # We need to fill this out 
-      assert True
+      query =
+        from p in Post,
+          where: p.user_id == ^vishal.id,
+          preload: [:user]
+      
+      posts = Repo.all query
+      assert post1.id in Enum.map(posts, &(&1.id))
+      assert hd(posts).user.username == "vishal"
     end
   end
 
