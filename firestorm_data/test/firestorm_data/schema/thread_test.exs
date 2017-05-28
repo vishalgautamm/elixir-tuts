@@ -10,8 +10,8 @@ defmodule FirestormData.ThreadTest do
 
   test "creating a thread", %{category: category} do
     otp_changeset =
-      %Thread{} =
-        |> Thread.changeset(%{category_id: category.id, title: "OTP is neat"})
+      %Thread{}
+      |> Thread.changeset(%{category_id: category.id, title: "OTP is neat"})
 
     assert {:ok, _} = Repo.insert otp_changeset 
   end

@@ -5,9 +5,9 @@ defmodule FirestormData.PostTest do
   setup do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(Repo)
     {:ok, category} = %Category{title: "Elixir"} |> Repo.insert
-    {:ok, otp} = $Thread{title: "OTP is neat", category_id: category.id} |> Repo.insert 
-    {:ok, vishal} = %User{username: "vishal". email: "vishal.91@live.com", name: "Vishal Gautam"} |> Repo.insert 
-    {:ok. category: category, otp: otp, vishal: vishal}
+    {:ok, otp} = %Thread{title: "OTP is neat", category_id: category.id} |> Repo.insert 
+    {:ok, vishal} = %User{username: "vishal", email: "vishal.91@live.com", name: "Vishal Gautam"} |> Repo.insert 
+    {:ok, category: category, otp: otp, vishal: vishal}
   end
 
   test "creating a post", %{otp: otp, vishal: vishal} do
