@@ -17,4 +17,20 @@ defmodule FirestormData.PostTest do
 
     assert {:ok, _} = Repo.insert post_changeset 
   end
+
+  describe "given some posts" do
+    setup [:create_other_users, :create_sample_posts]
+
+    test "finding a post by a user", %{post1: post1, vishal: vishal} do
+      # We need to fill this out 
+      assert True
+    end
+  end
+
+  defp create_other_users(_) do
+    vivek =
+      %User{username: "Vicky", email: "vivek1234@gmail.com", name: "Vivek Gautam"}
+      |> Repo.insert
+    {:ok, vivek: vivek}
+  end
 end
