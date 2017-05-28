@@ -7,5 +7,10 @@ defmodule FirestormData.Repo.Migrations.CreateCategoriesAndThreadsAndPosts do
 
       timestamps()
     end
-  end
+
+    create table(:threads) do
+      add :categpry_id, referemces(:categories)
+      add :title, :string 
+    end
+  end 
 end
