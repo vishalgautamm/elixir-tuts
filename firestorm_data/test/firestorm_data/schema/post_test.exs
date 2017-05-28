@@ -22,7 +22,7 @@ defmodule FirestormData.PostTest do
   describe "given some posts" do
     setup [:create_other_users, :create_sample_posts]
 
-    test "finding a post by a user", %{post1: post1, vishal: vishal} do
+    test "finding a post by a user", %{post1: post1, vishal: vishal, post2: post2} do
       # We need to fill this out 
       query =
         from p in Post,
@@ -31,6 +31,7 @@ defmodule FirestormData.PostTest do
       
       posts = Repo.all query
       assert post1.id in Enum.map(posts, &(&1.id))
+      refute post2.id in Enum.map(posts, &(&1.id))
       assert hd(posts).user.username == "vishal"
     end
   end
