@@ -26,6 +26,7 @@ defmodule FirestormWeb.Router do
     # When someone `GET`s the root path, we'll handle the request with the
     # `PageController`'s `index` function.
     get "/", PageController, :index
+    resources "/users", Forums.UserController
   end
 
   # Other scopes may use custom stacks.
