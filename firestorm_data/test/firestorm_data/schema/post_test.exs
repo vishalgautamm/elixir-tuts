@@ -30,7 +30,22 @@ defmodule FirestormData.PostTest do
   defp create_other_users(_) do
     vivek =
       %User{username: "Vicky", email: "vivek1234@gmail.com", name: "Vivek Gautam"}
-      |> Repo.insert
+      |> Repo.insert!
+
     {:ok, vivek: vivek}
+  end
+
+  defp create_sample_posts(%{otp: otp, vishal: vishal, vivek: vivek}) do
+    post1 = 
+      %Post{}
+      |> Post.changeset(%{thread_id: otp.id, user_id: vishal.id, body: "Elixir is awesome"})
+      |> Repo.insert!
+    
+    post2 =
+      %Post{}
+      |> Post.changeset(%{thread_id: otp.id, user_id: vivek.id, body: "Clojure and Elm are awesome"})
+      |> Repo.insert!
+    
+    {:ok, post1: post1, post2: post2}
   end
 end
