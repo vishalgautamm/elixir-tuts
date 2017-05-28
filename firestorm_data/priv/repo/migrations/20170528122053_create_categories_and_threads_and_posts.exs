@@ -15,7 +15,7 @@ defmodule FirestormData.Repo.Migrations.CreateCategoriesAndThreadsAndPosts do
       timestamps()
     end
 
-    create index(:threads, [:categpry_id])
+    create index(:threads, [:category_id])
     # Posts belong to a thread and a user, and have a body
     create table(:posts) do
       add :thread_id, references(:threads)
