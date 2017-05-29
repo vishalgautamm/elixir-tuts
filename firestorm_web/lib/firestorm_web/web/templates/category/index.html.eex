@@ -31,9 +31,6 @@
       <h2 class="title">
         <%= category_link(@conn, category) %>
       </h2>
-      <h2 class="title">
-        <%= link category.title, to: category_path(@conn, :show, category.id) %>
-      </h2>
     </li>
   <% end %>
 </ol>
