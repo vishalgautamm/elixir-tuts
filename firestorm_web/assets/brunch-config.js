@@ -47,25 +47,6 @@ exports.config = {
     babel: {
       // Do not use ES6 compiler in vendor code
       ignore: [/vendor/]
-    }
-  },
-
-  modules: {
-    autoRequire: {
-      "js/app.js": ["js/app"]
-    }
-  },
-
-  npm: {
-    enabled: true
-  }
-
-  // ...
-  // Configure your plugins
-  plugins: {
-    babel: {
-      // Do not use ES6 compiler in vendor code
-      ignore: [/vendor/]
     },
     sass: {
       options: {
@@ -77,5 +58,17 @@ exports.config = {
       }
     }
   },
-  // ...
+
+
+  modules: {
+    autoRequire: {
+      "js/app.js": ["js/app"]
+    }
+  },
+
+  npm: {
+    enabled: true
+  }
+
+
 };
