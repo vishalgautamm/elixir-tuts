@@ -3,8 +3,10 @@ defmodule FirestormWeb.Forums do
   The boundary for the Forums system.
   """
 
-  import Ecto.Query, warn: false
+  import Ecto.{Query, Changeset}, warn: false
+  import Ecto.Changeset
   alias FirestormWeb.Repo
+  alias FirestormWeb.Forums.Thread
 
   alias FirestormWeb.Forums.User
 
@@ -100,6 +102,13 @@ defmodule FirestormWeb.Forums do
   """
   def change_user(%User{} = user) do
     User.changeset(user, %{})
+  end
+
+  @doc false
+  def thread_changeset(%Thread{} = thread, attrs) do
+    thread
+    |> cast(attrs, [:title, :category_id])
+    |> validate_required([:title, :category_id])
   end
 
   alias FirestormWeb.Forums.Category
@@ -205,12 +214,14 @@ defmodule FirestormWeb.Forums do
 
   ## Examples
 
-      iex> list_threads()
+      iex> list_threads(category)
       [%Thread{}, ...]
 
   """
-  def list_threads do
-    Repo.all(Thread)
+  def list_threads(category) do
+    Thread
+    |> where([t], t.category_id == ^category.id)
+    |> Repo.all
   end
 
   @doc """
@@ -220,15 +231,18 @@ defmodule FirestormWeb.Forums do
 
   ## Examples
 
-      iex> get_thread!(123)
+      iex> get_thread!(category, 123)
       %Thread{}
 
-      iex> get_thread!(456)
+      iex> get_thread!(category, 456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_thread!(id), do: Repo.get!(Thread, id)
-
+  def get_thread!(category, id) do
+    Thread
+    |> where([t], t.category_id == ^category.id)
+    |> Repo.get!(id)
+  end
   @doc """
   Creates a thread.
 
