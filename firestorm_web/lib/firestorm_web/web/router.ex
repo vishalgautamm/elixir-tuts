@@ -19,6 +19,7 @@ defmodule FirestormWeb.Web.Router do
     get "/", PageController, :index
     resources "/users", UserController
     resources "/categories", CategoryController
+    resources "/threads", ThreadController
   end
 
   # Other scopes may use custom stacks.
