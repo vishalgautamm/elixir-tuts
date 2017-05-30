@@ -1,20 +1,24 @@
-# FirestormWeb
+![Firestorm](./firestorm-logo.png)
+### An open-source forum engine, with an Elixir+Phoenix backend and an Elm frontend.
+#### A community-funded project from [DailyDrip](https://www.dailydrip.com).
 
-To start your Phoenix server:
+This is an orphan branch for the starting point of the Firestorm Forum episodes
+on [DailyDrip Elixir Topic](https://www.dailydrip.com/topics/elixir). There's
+already a working version of the forum in the master branch, but this allows us
+to build it from scratch for learning purposes.
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+## Patrons
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+This project was funded by [a
+Kickstarter](https://www.kickstarter.com/projects/1003377429/firestorm-an-open-source-forum-in-phoenix-from-eli).
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+All of the patrons that made it possible are listed in [the PATRONS
+file](PATRONS.md).
 
-## Learn more
+## Code
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+This is an umbrella app consisting of [`firestorm_data`](./apps/firestorm_data).
+
+## License
+
+Firestorm is [MIT Licensed](./LICENSE).

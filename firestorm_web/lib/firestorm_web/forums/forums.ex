@@ -4,9 +4,7 @@ defmodule FirestormWeb.Forums do
   """
 
   import Ecto.{Query, Changeset}, warn: false
-  import Ecto.Changeset
   alias FirestormWeb.Repo
-  alias FirestormWeb.Forums.Thread
 
   alias FirestormWeb.Forums.User
 
@@ -53,7 +51,7 @@ defmodule FirestormWeb.Forums do
   """
   def create_user(attrs \\ %{}) do
     %User{}
-    |> User.changeset(attrs)
+    |> user_changeset(attrs)
     |> Repo.insert()
   end
 
@@ -71,7 +69,7 @@ defmodule FirestormWeb.Forums do
   """
   def update_user(%User{} = user, attrs) do
     user
-    |> User.changeset(attrs)
+    |> user_changeset(attrs)
     |> Repo.update()
   end
 
@@ -101,14 +99,13 @@ defmodule FirestormWeb.Forums do
 
   """
   def change_user(%User{} = user) do
-    User.changeset(user, %{})
+    user_changeset(user, %{})
   end
 
-  @doc false
-  def thread_changeset(%Thread{} = thread, attrs) do
-    thread
-    |> cast(attrs, [:title, :category_id])
-    |> validate_required([:title, :category_id])
+  defp user_changeset(%User{} = user, attrs) do
+    user
+    |> cast(attrs, [:username, :email, :name])
+    |> validate_required([:username, :email, :name])
   end
 
   alias FirestormWeb.Forums.Category
@@ -156,7 +153,7 @@ defmodule FirestormWeb.Forums do
   """
   def create_category(attrs \\ %{}) do
     %Category{}
-    |> Category.changeset(attrs)
+    |> category_changeset(attrs)
     |> Repo.insert()
   end
 
@@ -174,7 +171,7 @@ defmodule FirestormWeb.Forums do
   """
   def update_category(%Category{} = category, attrs) do
     category
-    |> Category.changeset(attrs)
+    |> category_changeset(attrs)
     |> Repo.update()
   end
 
@@ -204,13 +201,19 @@ defmodule FirestormWeb.Forums do
 
   """
   def change_category(%Category{} = category) do
-    Category.changeset(category, %{})
+    category_changeset(category, %{})
+  end
+
+  defp category_changeset(%Category{} = category, attrs) do
+    category
+    |> cast(attrs, [:title])
+    |> validate_required([:title])
   end
 
   alias FirestormWeb.Forums.Thread
 
   @doc """
-  Returns the list of threads.
+  Returns the list of threads for a given category.
 
   ## Examples
 
@@ -225,9 +228,9 @@ defmodule FirestormWeb.Forums do
   end
 
   @doc """
-  Gets a single thread.
+  Gets a single thread in a category.
 
-  Raises `Ecto.NoResultsError` if the Thread does not exist.
+  Raises `Ecto.NoResultsError` if the Thread does not exist in that category.
 
   ## Examples
 
@@ -243,6 +246,7 @@ defmodule FirestormWeb.Forums do
     |> where([t], t.category_id == ^category.id)
     |> Repo.get!(id)
   end
+
   @doc """
   Creates a thread.
 
@@ -257,7 +261,7 @@ defmodule FirestormWeb.Forums do
   """
   def create_thread(attrs \\ %{}) do
     %Thread{}
-    |> Thread.changeset(attrs)
+    |> thread_changeset(attrs)
     |> Repo.insert()
   end
 
@@ -275,7 +279,7 @@ defmodule FirestormWeb.Forums do
   """
   def update_thread(%Thread{} = thread, attrs) do
     thread
-    |> Thread.changeset(attrs)
+    |> thread_changeset(attrs)
     |> Repo.update()
   end
 
@@ -305,6 +309,12 @@ defmodule FirestormWeb.Forums do
 
   """
   def change_thread(%Thread{} = thread) do
-    Thread.changeset(thread, %{})
+    thread_changeset(thread, %{})
+  end
+
+  defp thread_changeset(%Thread{} = thread, attrs) do
+    thread
+    |> cast(attrs, [:title, :category_id])
+    |> validate_required([:title, :category_id])
   end
 end

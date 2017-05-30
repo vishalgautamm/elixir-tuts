@@ -22,9 +22,4 @@ defmodule FirestormWeb.Web.Router do
       resources "/threads", ThreadController
     end
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", FirestormWeb.Web do
-  #   pipe_through :api
-  # end
 end

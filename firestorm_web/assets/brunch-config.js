@@ -5,13 +5,14 @@ exports.config = {
       joinTo: "js/app.js"
 
       // To use a separate vendor.js bundle, specify two files path
-      // http://brunch.io/docs/config#-files-
+      // https://github.com/brunch/brunch/blob/master/docs/config.md#files
       // joinTo: {
       //  "js/app.js": /^(js)/,
       //  "js/vendor.js": /^(vendor)|(deps)/
       // }
       //
       // To change the order of concatenation of files, explicitly mention here
+      // https://github.com/brunch/brunch/tree/master/docs#concatenation
       // order: {
       //   before: [
       //     "vendor/js/jquery-2.1.1.js",
@@ -59,7 +60,6 @@ exports.config = {
     }
   },
 
-
   modules: {
     autoRequire: {
       "js/app.js": ["js/app"]
@@ -69,6 +69,4 @@ exports.config = {
   npm: {
     enabled: true
   }
-
-
 };

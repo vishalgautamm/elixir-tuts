@@ -36,7 +36,7 @@ defmodule FirestormWeb.Web.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_firestorm_web_key",
-    signing_salt: "Nw5VVv91"
+    signing_salt: "YhYEFZld"
 
   plug FirestormWeb.Web.Router
 

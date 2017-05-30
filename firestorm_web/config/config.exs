@@ -12,7 +12,7 @@ config :firestorm_web,
 # Configures the endpoint
 config :firestorm_web, FirestormWeb.Web.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "tp3iWVedsbzELj+7Jyx1btSXagUzDMVF8gmfQWwN9AVqHxggA4jvBnq+fD6OwNhJ",
+  secret_key_base: "Q1bBtoEs8F2+MsssVU8zHXvhJBVFDI/4EFEINldDXBlVsBkNr30gi4WIGNwds+YO",
   render_errors: [view: FirestormWeb.Web.ErrorView, accepts: ~w(html json)],
   pubsub: [name: FirestormWeb.PubSub,
            adapter: Phoenix.PubSub.PG2]
