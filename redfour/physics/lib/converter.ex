@@ -1,6 +1,5 @@
 defmodule Converter do
 
-
   def to_light_seconds {:miles, miles} = val, precision: precision do
     (miles * 5.86819e-6) |> round_to(precision)
   end
@@ -16,7 +15,6 @@ defmodule Converter do
   def round_to(val, precision) when is_float(val) do
     Float.round(val, precision)
   end
-
 
   def to_nearest_tenth(val) when is_float(val) or is_integer(val) do
     round_to(val, 1)

@@ -19,7 +19,6 @@ defmodule Physics.Rocketry do
   def orbital_speed(height) do
     newtons_gravitational_constant() * earth().mass / orbital_radius(height)
       |> square_root
-      |>to_nearest_tenth
   end
 
   def orbital_acceleration(height) do
@@ -27,7 +26,8 @@ defmodule Physics.Rocketry do
   end
 
   def orbital_term height do
-    4 * (pi |> squared) * orbital_radius(height |> cubed) / (newtons_gravitational_constant() * earth.mass)
+    4 * (pi() |> squared) * (orbital_radius(height) |> cubed)
+    / (newtons_gravitational_constant() * earth().mass)
       |> square_root
       |> seconds_to_hours
   end
