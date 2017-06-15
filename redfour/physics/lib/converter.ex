@@ -1,15 +1,19 @@
 defmodule Converter do
 
-  def to_light_seconds {:miles, miles} = val, precision: precision do
+  def to_light_seconds{:miles, miles} = val, precision: precision do
     (miles * 5.86819e-6) |> round_to(precision)
   end
 
-  def to_light_seconds {:meters, meters} = val, precision: precision do
-    {meters * 3.335638620368e-9} |> round_to(precision)
+  def to_light_seconds{:meters, meters} = val, precision: precision do
+    (meters * 3.335638620368e-9) |> round_to(precision)
   end
 
-  def to_light_seconds {:meters, meters} = val, precision: precision do
-    {meters * 3.335638620368e-9} |> round_to(precision)
+  def to_light_seconds({:feet, feet} = val, precision: precision) when is_integer(feet) or is_float(feet)  do
+    (feet * 1.016702651488166404e-9) |> round_to(precision)
+  end
+
+  def to_light_seconds({:inches, inches} = val, precision: precision) when is_integer(inches) or is_float(inches)  do
+    (inches * 8.472522095734715723e-11) |> round_to(precision)
   end
 
   def round_to(val, precision) when is_float(val) do

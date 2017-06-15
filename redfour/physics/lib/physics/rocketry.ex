@@ -39,7 +39,8 @@ defmodule Physics.Rocketry do
   def correct_orbital_height do
     (newtons_gravitational_constant() * earth().mass * 16) / (4 * (pi() |> squared))
     |> cubic_root
-  end 
+    |> to_nearest_tenth
+  end
 
   defp calculate_escape %{mass: mass, radius: radius} do
     2 * newtons_gravitational_constant() * mass / radius
@@ -47,3 +48,4 @@ defmodule Physics.Rocketry do
   end
 
 end
+

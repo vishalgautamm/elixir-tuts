@@ -33,7 +33,8 @@ defmodule PhysicsTest do
   end
 
   test "Calculates the height when t is 4 hours" do
-    h = Physics.Rocketry.correct_orbital_height |> IO.inspect
+    h = Physics.Rocketry.correct_orbital_height
+    assert h == 54450.5
   end
 
   test "Orbital term for 100km above earth" do
